@@ -1,31 +1,32 @@
----
 services:
   radarr:
     image: lscr.io/linuxserver/radarr:latest
     container_name: radarr-extended-swarm
     environment:
-      - PUID=1000
-      - PGID=33
-      - TZ=America/Chicago
+    - PUID=1000
+    - PGID=33
+    - TZ=America/Chicago
     volumes:
-      - config:/config
-      - /media/Multimedia/Movies:/movies 
-      - /media/Multimedia/Incoming/:/downloads
-      - custom-services.d:/custom-services.d
-      - custom-cont-init.d:/custom-cont-init.d
+    - radarr-extended-swarm_config:/config
+    - /media/Multimedia/Movies:/movies
+    - /media/Multimedia/Incoming:/downloads
+    - radarr-extended-swarm_custom-services:/custom-services.d
+    - radarr-extended-swarm_custom-cont-init:/custom-cont-init.d
     ports:
-      - target: 7878
-        published: 7878
-        protocol: tcp
-        mode: host        
+    - target: 7878
+      published: 7878
+      protocol: tcp
+      mode: host
     deploy:
       placement:
         constraints:
-          - node.labels.deployment.target.radarr == true
+        - node.labels.deployment.target.radarr == true
       restart_policy:
         condition: any
 volumes:
-  config:
-  custom-services.d:
-  custom-cont-init.d:
-  
+  radarr-extended-swarm_config:
+    name: radarr-extended-swarm_config
+  radarr-extended-swarm_custom-services:
+    name: radarr-extended-swarm_custom-services
+  radarr-extended-swarm_custom-cont-init:
+    name: radarr-extended-swarm_custom-cont-init
