@@ -8,8 +8,8 @@ deployment and polls this repository for changes.
 | Portainer stack id | 13 |
 | Portainer host | ore-dock-110-4 |
 | Endpoint | - (id -) |
-| Swarm | whofnrgxv5ig |
-| Live service | radarr-extended-swarm_radarr |
+| Swarm | True |
+| Live service | svc:radarr-extended-swarm_radarr |
 | Git repo | https://github.com/chaseoriginal/radarr-extended-swarm |
 | Compose file | `docker-compose.yml` |
 | Auto-update poll | every 900s |
@@ -39,8 +39,8 @@ deployment and polls this repository for changes.
 ## Verifying a deployment
 
 ```bash
-docker service ls --filter name=radarr-extended-swarm_radarr
-docker service inspect radarr-extended-swarm_radarr --format '{{json .Spec.TaskTemplate.ContainerSpec.Mounts}}'
+docker service ls --filter name=svc:radarr-extended-swarm_radarr
+docker service inspect svc:radarr-extended-swarm_radarr --format '{{json .Spec.TaskTemplate.ContainerSpec.Mounts}}'
 ```
 
 A healthy stack shows `1/1` and the same volume names as before.
