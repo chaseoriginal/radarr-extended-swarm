@@ -20,7 +20,7 @@ services:
     deploy:
       placement:
         constraints:
-        - node.labels.deployment.target.radarr == true
+        - node.hostname==ore-dock-110-6
       restart_policy:
         condition: any
 volumes:
